@@ -25,6 +25,10 @@ func _process(_delta):
 		if Input.is_action_just_released("mouse_down"):
 			mouse_release_position = get_global_mouse_position()
 			launch_player()
+			
+	# if mouse is not being pressed, player is not sleeping, and velocity is 0, stick the player
+	if !sleeping && !Input.is_action_pressed("mouse_down") && linear_velocity == Vector2.ZERO:
+		stick({})
 
 func launch_player():
 	var launch_direction = direction.rotated($LunaSprite.rotation)

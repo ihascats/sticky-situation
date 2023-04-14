@@ -12,9 +12,11 @@ radius = 6.0
 
 [node name="Luna" type="RigidBody2D"]
 mode = 2
+gravity_scale = 8.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
+launch_force_magnitude = 500
 
 [node name="LunaSprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -24,10 +26,14 @@ position = Vector2( 0, 12 )
 texture = ExtResource( 3 )
 
 [node name="ChargeBar" type="Sprite" parent="ChargeUp"]
+show_behind_parent = true
+position = Vector2( 0, 2.38419e-07 )
+scale = Vector2( 1, 2 )
 texture = ExtResource( 4 )
 
 [node name="ShowCharge" type="Sprite" parent="ChargeUp"]
-position = Vector2( 7, 0 )
+position = Vector2( 7, 2.38419e-07 )
+scale = Vector2( 1, 2 )
 texture = ExtResource( 5 )
 offset = Vector2( -7, 0 )
 
@@ -36,7 +42,7 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.4, 0.4 )
 
 [node name="FpsCounter" type="Label" parent="."]
 margin_left = 11.0
