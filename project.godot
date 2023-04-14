@@ -24,6 +24,10 @@ config/name="Sticky-situation"
 run/main_scene="res://Maps/ResearchStation.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/vsync/use_vsync=false
+
 [editor]
 
 version_control_autoload_on_startup=true
