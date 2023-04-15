@@ -6,9 +6,16 @@ var direction = Vector2.RIGHT
 var mouse_press_position = Vector2.ZERO
 var mouse_release_position = Vector2.ZERO
 var charge_up
+var seconds = Timer.new()
+const TIME_LIMIT = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_child(seconds)
+	seconds.wait_time = 0.1
+	seconds.start()
+	seconds.paused = true
+	seconds.connect("timeout", $TimerDisplay, "set_timer", [TIME_LIMIT])
 	sleeping = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,13 +34,14 @@ func _process(delta):
 			$Trajectory/TrajectoryLine.clear_points()
 			mouse_release_position = get_global_mouse_position()
 			launch_player()
+			seconds.paused = false
 			
 	# if mouse is not being pressed, player is not sleeping, and velocity is 0, stick the player
 	if !sleeping && !Input.is_action_pressed("mouse_down") && linear_velocity == Vector2.ZERO:
 		stick({})
 
 func launch_player():
-	var launch_direction = direction.rotated($LunaSprite.rotation)
+	var launch_direction = direction.normalized().rotated($LunaSprite.rotation)
 	var launch_force = launch_direction * ((1 - charge_up) * launch_force_magnitude)
 	apply_impulse(Vector2.ZERO, launch_force)
 
@@ -43,14 +51,18 @@ func stick(_body):
 	charge_up = 1
 	$ChargeUp/ShowCharge.scale.x = charge_up
 	$Trajectory/TrajectoryLine.clear_points()
+	seconds.paused = true
 
 func update_trajectory(dir: Vector2, speed: float, gravity: float, delta: float) -> void:
 	$Trajectory/TrajectoryLine.clear_points()
-	var max_trajectory_points = 20
+	var max_trajectory_points = 200
 	var pos: Vector2 = Vector2.ZERO
-	var vel = dir.rotated($LunaSprite.rotation) * speed * (1 - charge_up)
+	var vel = dir.normalized().rotated($LunaSprite.rotation) * speed * (1 - charge_up)
 	for _n in range(max_trajectory_points):
 		vel.y += gravity * 100 * delta
 		pos += vel * delta
 		$Trajectory/TrajectoryLine.add_point(pos)
+		
+func die():
+	modulate = Color(1, 0, 0)
 
