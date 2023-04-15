@@ -1,9 +1,25 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/TilesTileSet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Luna.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/DecoTileSet.png" type="Texture" id=5]
 [ext_resource path="res://Assets/ObstaclesTileSet.png" type="Texture" id=6]
+
+[sub_resource type="TileSet" id=1]
+5/name = "BackgroundWall"
+5/texture = ExtResource( 1 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 64, 128, 64, 64 )
+5/tile_mode = 0
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=12]
 points = PoolVector2Array( 20, 4, 20, 4, 20, 0, 44, 0, 44, 4, 64, 4, 64, 64, 0, 64, 0, 4 )
@@ -38,7 +54,7 @@ points = PoolVector2Array( 48, 64, 16, 64, 16, 56, 48, 56 )
 [sub_resource type="ConvexPolygonShape2D" id=21]
 points = PoolVector2Array( 48, 24, 16, 24, 16, 0, 48, 0 )
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=22]
 1/name = "FloorConnectingTile"
 1/texture = ExtResource( 1 )
 1/tex_offset = Vector2( 0, 0 )
@@ -123,20 +139,6 @@ points = PoolVector2Array( 48, 24, 16, 24, 16, 0, 48, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
-5/name = "BackgroundWall"
-5/texture = ExtResource( 1 )
-5/tex_offset = Vector2( 0, 0 )
-5/modulate = Color( 1, 1, 1, 1 )
-5/region = Rect2( 64, 128, 64, 64 )
-5/tile_mode = 0
-5/occluder_offset = Vector2( 0, 0 )
-5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, 0 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape_one_way = false
-5/shape_one_way_margin = 0.0
-5/shapes = [  ]
-5/z_index = 0
 6/name = "SolidWall"
 6/texture = ExtResource( 1 )
 6/tex_offset = Vector2( 0, 0 )
@@ -716,11 +718,12 @@ points = PoolVector2Array( 32, 25, 0, 25, 0, 19, 32, 19 )
 [node name="ResearchStation" type="TileMap"]
 tile_set = SubResource( 1 )
 format = 1
-tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 327676, 5, 0, 327677, 5, 0, 327678, 5, 0, 327679, 5, 0, 262144, 5, 0, 262145, 5, 0, 262146, 5, 0, 262147, 5, 0, 262148, 5, 0, 262149, 5, 0, 262150, 5, 0, 262151, 5, 0, 262152, 5, 0, 262153, 5, 0, 262154, 5, 0, 262155, 5, 0, 262156, 5, 0, 262157, 5, 0, 262158, 5, 0, 393212, 5, 0, 393213, 5, 0, 393214, 5, 0, 393215, 5, 0, 327680, 5, 0, 327681, 5, 0, 327682, 5, 0, 327683, 5, 0, 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327689, 5, 0, 327690, 5, 0, 327691, 5, 0, 327692, 5, 0, 327693, 5, 0, 327694, 5, 0 )
+tile_data = PoolIntArray( 327679, 5, 0, 262144, 5, 0, 262145, 5, 0, 262146, 5, 0, 262147, 5, 0, 262148, 5, 0, 262149, 5, 0, 262150, 5, 0, 262151, 5, 0, 262152, 5, 0, 262153, 5, 0, 393215, 5, 0, 327680, 5, 0, 327681, 5, 0, 327682, 5, 0, 327683, 5, 0, 327684, 5, 0, 327685, 5, 0, 327686, 5, 0, 327687, 5, 0, 327688, 5, 0, 327689, 5, 0 )
 
 [node name="Walls" type="TileMap" parent="."]
 position = Vector2( 0, -320 )
-tile_set = SubResource( 1 )
+tile_set = SubResource( 22 )
+show_collision = true
 format = 1
 tile_data = PoolIntArray( 589820, 4, 0, 589821, 4, 0, 589822, 4, 0, 589823, 3, 0, 524288, 4, 0, 524289, 4, 0, 524290, 4, 0, 524291, 4, 0, 524292, 4, 0, 524293, 4, 0, 524294, 4, 0, 524295, 4, 0, 524296, 4, 0, 524297, 3, 0, 524298, 4, 0, 524299, 4, 0, 524300, 4, 0, 524301, 4, 0, 524302, 4, 0, 655359, 6, 0, 589833, 7, 0, 720895, 6, 0, 655369, 9, 0, 786428, 2, 0, 786429, 2, 0, 786430, 2, 0, 786431, 1, 0, 720896, 2, 0, 720897, 2, 0, 720898, 2, 0, 720899, 2, 0, 720900, 2, 0, 720901, 2, 0, 720902, 2, 0, 720903, 2, 0, 720904, 2, 0, 720905, 1, 0, 720906, 2, 0, 720907, 2, 0, 720908, 2, 0, 720909, 2, 0, 720910, 2, 0 )
 
@@ -737,5 +740,9 @@ format = 1
 tile_data = PoolIntArray( 524290, 12, 0, 524291, 13, 0, 524295, 536870916, 0, 524296, 7, 0, 589831, 5, 0, 589833, 0, 0, 589836, 14, 0, 589844, 7, 0, 655369, 2, 0, 655373, 9, 0, 720902, 6, 0, 720903, 6, 0, 720905, 1073741828, 0, 720907, 8, 0, 720908, 10, 0, 720910, 11, 0 )
 
 [node name="Luna" parent="." instance=ExtResource( 2 )]
-position = Vector2( 62, 334 )
+position = Vector2( 88, 320 )
 z_index = 2
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color( 0.756863, 0.6, 0.835294, 1 )
