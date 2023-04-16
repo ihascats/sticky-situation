@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Luna.png" type="Texture" id=1]
 [ext_resource path="res://Player/Luna.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/NoCharge.png" type="Texture" id=5]
 [ext_resource path="res://Player/FpsCounter.gd" type="Script" id=6]
 [ext_resource path="res://Player/TimerDisplay.gd" type="Script" id=7]
+[ext_resource path="res://Player/TrajectoryParticle.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 6.0
@@ -20,7 +21,6 @@ gravity_scale = 8.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
-launch_force_magnitude = 600
 
 [node name="LunaSprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -58,6 +58,7 @@ text = "FPS:"
 script = ExtResource( 6 )
 
 [node name="Trajectory" type="Node2D" parent="."]
+visible = false
 show_behind_parent = true
 
 [node name="TrajectoryLine" type="Line2D" parent="Trajectory"]
@@ -73,5 +74,8 @@ margin_right = 20.0
 margin_bottom = -15.0
 text = "10"
 script = ExtResource( 7 )
+
+[node name="TrajectoryParticle" parent="." instance=ExtResource( 8 )]
+visible = false
 
 [connection signal="body_entered" from="." to="." method="stick"]

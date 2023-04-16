@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="TrajectoryParticle" type="CPUParticles2D"]
+amount = 100
+lifetime = 10.0
+spread = 0.0
+gravity = Vector2( 0, 784 )
+scale_amount = 4.0
+color = Color( 0.545098, 0.176471, 0.733333, 1 )

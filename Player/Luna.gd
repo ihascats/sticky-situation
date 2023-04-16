@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-export var launch_force_magnitude = 200
+export var launch_force_magnitude = 600
 
 var direction = Vector2.RIGHT
 var mouse_press_position = Vector2.ZERO
@@ -27,11 +27,13 @@ func _process(delta):
 			mouse_release_position = get_global_mouse_position()
 			charge_up = 1 - (mouse_press_position.distance_to(mouse_release_position) / 100)
 			charge_up = clamp(charge_up, 0, 1)
+			$TrajectoryParticle.visible = true
 			$ChargeUp/ShowCharge.scale.x = charge_up
 			$LunaSprite.rotation = atan2(mouse_press_position.y - mouse_release_position.y, mouse_press_position.x - mouse_release_position.x)
 			update_trajectory(direction, launch_force_magnitude, gravity_scale, delta)
 		if Input.is_action_just_released("mouse_down"):
-			$Trajectory/TrajectoryLine.clear_points()
+#			$Trajectory/TrajectoryLine.clear_points()
+			$TrajectoryParticle.visible = false
 			mouse_release_position = get_global_mouse_position()
 			launch_player()
 			seconds.paused = false
@@ -50,18 +52,24 @@ func stick(_body):
 	sleeping = true
 	charge_up = 1
 	$ChargeUp/ShowCharge.scale.x = charge_up
-	$Trajectory/TrajectoryLine.clear_points()
+#	$Trajectory/TrajectoryLine.clear_points()
 	seconds.paused = true
 
-func update_trajectory(dir: Vector2, speed: float, gravity: float, delta: float) -> void:
-	$Trajectory/TrajectoryLine.clear_points()
-	var max_trajectory_points = 200
-	var pos: Vector2 = Vector2.ZERO
-	var vel = dir.normalized().rotated($LunaSprite.rotation) * speed * (1 - charge_up)
-	for _n in range(max_trajectory_points):
-		vel.y += gravity * 100 * delta
-		pos += vel * delta
-		$Trajectory/TrajectoryLine.add_point(pos)
+func update_trajectory(dir: Vector2, speed: float, _gravity: float, _delta: float) -> void:
+	# Line2d implementation
+#	$Trajectory/TrajectoryLine.clear_points()
+#	var max_trajectory_points = 200
+#	var pos: Vector2 = Vector2.ZERO
+#	var vel = dir.normalized().rotated($LunaSprite.rotation) * speed * (1 - charge_up)
+#	for _n in range(max_trajectory_points):
+#		vel.y += gravity * 100 * delta
+#		pos += vel * delta
+#		$Trajectory/TrajectoryLine.add_point(pos)
+	# CPUParticle2d implementation
+	$TrajectoryParticle.direction = dir.normalized().rotated($LunaSprite.rotation)
+	$TrajectoryParticle.initial_velocity = speed * (1 - charge_up)
+	
+	pass
 		
 func die():
 	modulate = Color(1, 0, 0)
